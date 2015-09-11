@@ -1,0 +1,26 @@
+{
+  "name": "save-least-seq",
+  "version": "1.0.0",
+  "description": "extends `seq-file` to save the lowest completed sequence number from active async processes",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soldair/save-least-seq.git"
+  },
+  "keywords": [
+    "seq",
+    "sequence",
+    "couch",
+    "follower",
+    "changes"
+  ],
+  "author": "Ryan Day <soldair@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soldair/save-least-seq/issues"
+  },
+  "homepage": "https://github.com/soldair/save-least-seq#readme"
+}
