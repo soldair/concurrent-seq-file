@@ -25,5 +25,8 @@
   "homepage": "https://github.com/soldair/save-least-seq#readme",
   "dependencies": {
     "seq-file": "^1.2.1"
+  },
+  "devDependencies": {
+    "tape": "^4.2.0"
   }
 }
