@@ -1,7 +1,6 @@
 var SF = require('seq-file')
-var seqValue = seqFile.readSync()
 
-module.exports function(file,options){
+module.exports  = function(file,options){
 
   options = options||{}
 

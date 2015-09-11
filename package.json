@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/soldair/save-least-seq/issues"
   },
-  "homepage": "https://github.com/soldair/save-least-seq#readme"
+  "homepage": "https://github.com/soldair/save-least-seq#readme",
+  "dependencies": {
+    "seq-file": "^1.2.1"
+  }
 }
