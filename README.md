@@ -35,7 +35,7 @@ follower.on('data',function(obj){
   
 ### notes
 
-job timeouts should be implmented on top of this module.
+job timeouts should be implemented on top of this module.
 
 
 
