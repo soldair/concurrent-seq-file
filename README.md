@@ -28,9 +28,14 @@ follower.on('data',function(obj){
 
 - seq = module.exports(file)
   - seq is a function that writes the sequence 
+- done = seq(sequenceId)
+ - sequenceId is the next incrementing id number of the job you are starting.
+ - returns done. call this when you are done with the job.
 
   
+### notes
 
+job timeouts should be implmented on top of this module.
 
 
 
