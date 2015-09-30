@@ -1,7 +1,7 @@
 {
-  "name": "save-least-seq",
+  "name": "concurrent-seq-file",
   "version": "1.0.0",
-  "description": "extends `seq-file` to save the lowest completed sequence number from active async processes",
+  "description": "makes it safe to work on multiple jobs identified by a sequence at the same time.",
   "main": "index.js",
   "scripts": {
     "test": "tape test/*.js"
@@ -20,9 +20,9 @@
   "author": "Ryan Day <soldair@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/soldair/save-least-seq/issues"
+    "url": "https://github.com/soldair/concurrent-seq-file/issues"
   },
-  "homepage": "https://github.com/soldair/save-least-seq#readme",
+  "homepage": "https://github.com/soldair/concurrent-seq-file#readme",
   "dependencies": {
     "seq-file": "^1.2.1"
   },
