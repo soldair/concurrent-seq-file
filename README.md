@@ -26,8 +26,11 @@ follower.on('data',function(obj){
 ## api
 
 
-- seq = module.exports(file)
-  - seq is a function that writes the sequence 
+- seq = module.exports(file[,options])
+  - file - the file name to read the sequence from
+  - options, optional 
+  - returns the seq function.
+  
 - done = seq(sequenceId)
  - sequenceId is the next incrementing id number of the job you are starting.
  - returns done. call this when you are done with the job.

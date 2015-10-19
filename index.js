@@ -53,7 +53,7 @@ module.exports = function(file,options){
 
       ;(function fn(cbs){
         saving = true
-        var savedValue = saveValue;
+        var savedValue = +saveValue;
 
         save(sf,savedValue,function(err){
           unroll(err,+savedValue,cbs)
