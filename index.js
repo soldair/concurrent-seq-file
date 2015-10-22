@@ -56,6 +56,7 @@ module.exports = function(file,options){
         var savedValue = +saveValue;
 
         save(sf,savedValue,function(err){
+          startSequence.value = +savedValue
           unroll(err,+savedValue,cbs)
           setTimeout(function(){
             saving = false;

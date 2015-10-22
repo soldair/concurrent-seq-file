@@ -3,7 +3,7 @@ var test = require('tape')
 var seqFile = require('../')
 
 test('can',function(t){
-  t.plan(3)
+  t.plan(4)
 
   var seq = seqFile(__dirname+'/.test',{delay:200})
   
@@ -22,9 +22,10 @@ test('can',function(t){
     t.equals(seq,2,'must have saved 2 instead of 1 because both 1 and 2 are complete. [must save max done < floor started]')
   })
 
-  done3(function(err,seq){
+  done3(function(err,value){
     clearTimeout(timer)
-    t.equals(seq,3,'last one saves 3')
+    t.equals(value,3,'last one saves 3')
+    t.equals(seq.value,3,'should update seq.value too')
   })
 
   // hold the test open for the unrefed timers to finish
