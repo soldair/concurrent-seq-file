@@ -15,7 +15,9 @@ module.exports = function (file, options) {
   // for managing concurrent saves.
   var saveQ = false
   var saveValue = sf.readSync()
-
+  // if seq is 0 strings that start with 0 are always false when compared to it.
+  // https://github.com/npm/seq-file/pull/7
+  if(sf.seq == 0) sf.seq = ''
 
   startSequence.value = saveValue
 
