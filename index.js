@@ -1,29 +1,38 @@
 var Sf = require('seq-file')
 
 module.exports = function (file, options) {
+    options = options||{}
+
+    var sf = new Sf(file, options)
+    patchSeq(sf)
+    var saveValue = sf.readSync()
+
+    // if seq is 0 strings that start with 0 are always false when compared to it.
+    // https://github.com/npm/seq-file/pull/7
+    if(sf.seq == 0) sf.seq = ''
+
+    options.savedValue = saveValue||0
+    var start = module.exports.starter(function(toSave,cb){
+      // save the new sequence via seq-file
+      save(sf, toSave, cb)
+    },options)
+
+    start.value = saveValue
+    return start
+}
+
+module.exports.starter = function(persist,options) {
+  
   options = options || {}
 
-  var sf = new Sf(file, options)
-  patchSeq(sf)
-
+  var saveValue = options.savedValue||0
   var delay = options.delay || 1000
-
   var started = {}
   var dones = {}
   var saving = false
-
-  // for managing concurrent saves.
   var saveQ = false
-  var saveValue = sf.readSync()
-  // if seq is 0 strings that start with 0 are always false when compared to it.
-  // https://github.com/npm/seq-file/pull/7
-  if(sf.seq == 0) sf.seq = ''
 
-  startSequence.value = saveValue
-
-  return startSequence
-
-  function startSequence (seq, opts) {
+  return function startSequence (seq, opts) {
     started[seq] = seq
     return function (cb) {
       delete started[seq]
@@ -53,7 +62,7 @@ module.exports = function (file, options) {
       saveValue = endSeq
 
       if (!saveQ) saveQ = []
-      // im either already waiting or my save loop is idle and i have not yet completed the lowest started sequence
+      // im either already waiting or my save loop is idle and the implementor has not yet completed the lowest started sequence
       if (saving || !saveValue) {
         return saveQ.push.apply(saveQ, cbs)
       }
@@ -64,7 +73,7 @@ module.exports = function (file, options) {
         saving = true
 
         var savedValue = saveValue
-        save(sf, savedValue, function (err) {
+        persist(savedValue, function (err){
           startSequence.value = savedValue
           
           unroll(err, savedValue, cbs)
