@@ -39,7 +39,10 @@ module.exports.starter = function(persist,options) {
       var startedSeq = least(started)
 
       if (dones[seq]) {
-        return cb(new Error("shouldn't 'done' the same sequence id more than once concurrently"))
+        var msg = "shouldn't 'done' the same sequence id more than once concurrently"
+        if(cb) cb(new Error(msg))
+        else console.warn(msg)
+        return
       }
       dones[seq] = {cb:cb, seq:seq}
 
